@@ -1,3 +1,4 @@
+require "active_record/connection_adapters/sql_type_metadata"
 module ActiveRecord
   module ConnectionAdapters
     module ArFirebird

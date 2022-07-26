@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '~> 2.5'
 
   spec.add_dependency 'fb', '~> 0.9.0'
-  spec.add_dependency 'rails', '>= 5.2.0', '< 6.1.0'
+  spec.add_dependency 'rails', '>= 5.2.0', '< 8.0.0'
 
   spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'database_cleaner', '~> 1.6'

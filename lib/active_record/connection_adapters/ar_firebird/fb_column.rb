@@ -13,17 +13,18 @@ module ActiveRecord
             default_function = nil,
             collation = nil,
             comment = nil,
-            firebird_options = {}
-          )
+            firebird_options = {},
+            **
+        )
           @domain = firebird_options.domain
           super(
-            name,
-            default,
-            sql_type_metadata,
-            null,
-            default_function,
-            collation: nil,
-            comment: comment
+              name,
+              default,
+              sql_type_metadata,
+              null,
+              default_function,
+              collation: nil,
+              comment: comment
           )
         end
       end
