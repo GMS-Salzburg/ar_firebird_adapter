@@ -87,6 +87,7 @@ module ActiveRecord::ConnectionAdapters::ArFirebird::DatabaseStatements
       ActiveSupport::Dependencies.interlock.permit_concurrent_loads do
         begin
           result = @connection.execute(sql, *type_casted_binds)
+          types = {}
           if result.is_a?(Fb::Cursor)
             fields = result.fields.map(&:name)
             rows = result.fetchall.map do |row|
@@ -96,9 +97,9 @@ module ActiveRecord::ConnectionAdapters::ArFirebird::DatabaseStatements
             end
 
             result.close
-            ActiveRecord::Result.new(fields, rows)
+            build_result(columns: fields, rows: rows, column_types: types)
           else
-            result
+            build_result(columns: [], rows: [], column_types: {})
           end
         rescue Exception => e
           raise e.message.encode('UTF-8', @connection.encoding)
