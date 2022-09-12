@@ -99,7 +99,11 @@ module ActiveRecord::ConnectionAdapters::ArFirebird::DatabaseStatements
             result.close
             build_result(columns: fields, rows: rows, column_types: types)
           else
-            build_result(columns: [], rows: [], column_types: {})
+            if "Destroy".in?(name)
+              result
+            else
+              build_result(columns: [], rows: [], column_types: {})
+            end
           end
         rescue Exception => e
           raise e.message.encode('UTF-8', @connection.encoding)
