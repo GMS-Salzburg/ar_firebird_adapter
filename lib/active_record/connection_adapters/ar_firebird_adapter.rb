@@ -119,7 +119,8 @@ protected
     when /This operation is not defined for system tables/
       ActiveRecord::ActiveRecordError.new(message)
     else
-      super
+      #super
+      ActiveRecord::ActiveRecordError.new(message)
     end
   end
 
